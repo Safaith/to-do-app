@@ -18,19 +18,19 @@ def index(request):
     return render(request,"tasks/list.html",context)
 
 def update_task(request,pk):
-   Task = task.objects.get(id=pk)
+    Task = task.objects.get(id=pk)
 
-   form = taskform(instance=Task)
+    form = taskform(instance=Task)
 
-   if request.method=="POST":
-      form = taskform(request.POST, instance=Task)
-      if form.is_valid():
-          form.save()
-          return redirect("/")
+    if request.method=="POST":
+        form = taskform(request.POST, instance=Task)
+    if form.is_valid():
+        form.save()
+        return redirect("/")
 
-   context = {"form":form}
+    context = {"form":form}
 
-   return render(request,"tasks/update_task.html",context)
+    return render(request,"tasks/update_task.html",context)
 
 def delete_task(request,pk):
     item = task.objects.get(id=pk)
